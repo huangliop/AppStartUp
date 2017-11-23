@@ -1,9 +1,9 @@
 {
   "name": "appstartup",
-  "version": "1.0.11",
-  "description": "",
+  "version": "1.0.14",
+  "description": "", 
   "bin": {
-    "appstart": "./app.js"
+    "appstart": "./bin/app"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,10 +11,8 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/huangliop/AppStartUp.git"
-  },
-  "engines": {
-    "node": "6.*"
-  },
+  }, 
+  "preferGlobal": true,
   "author": "Huang Li",
   "license": "ISC",
   "dependencies": {

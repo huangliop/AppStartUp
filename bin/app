@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+
+const exec = require('child_process').execSync;
+
+const SysChecker = require('../libs/sys_check');
+const InputRecevier = require('../libs/input_recevier');
+const StepLog = require('../libs/step_log');
+const PorjectCreator = require('../libs/project_creator');
+
+let stepLog = new StepLog();
+let creator = new PorjectCreator();
+
+let currentStep = stepLog.currentStep();
+let runStep = function (currentStep) {
+    let r2, r3, r4,r5;
+    switch (currentStep) {
+        //第一步检查系统
+    case 0:
+        {
+            let c = SysChecker.check(); 
+            if (c) {
+                stepLog.stepDone(0);
+            } else return;
+        }
+        //创建工程
+    case 1:
+        {
+            InputRecevier.questionCreateProject((answers) => createProjectCb(answers));
+
+            function createProjectCb(arg) {
+                let r1 = creator.create(arg);
+                let r2 = r1 ? creator.createKeystore() : false;
+                let r3 = r2 ? creator.addPlatfrom() : false;
+                let r4 = r3 ? creator.addPlugins() : false; 
+                let r5 = r4 ? creator.copyResource() : false;  
+            }
+        }
+        break;
+        //创建一个默认的keystore
+    case 2:
+        {
+            if (currentStep == 2) console.log('继续创建上次未完成的项目');
+            r2 = creator.createKeystore();
+        }
+        //添加平台
+    case 3:
+        {
+            if (currentStep == 3) {
+                console.log('继续创建上次未完成的项目');
+                r3 = creator.addPlatfrom();
+            } else {
+                r3 = r2 ? creator.addPlatfrom() : false;
+            }
+        }
+        //添加插件
+    case 4:
+        {
+            if (currentStep == 4) {
+                console.log('继续创建上次未完成的项目');
+                r4= creator.addPlugins();
+            } else {
+                r4=r3 ? creator.addPlugins() : false;
+            }
+        }
+            //拷贝资源文件
+    case 5:
+            {
+                if(currentStep==5){
+                    console.log('继续创建上次未完成的项目');
+                    r4= creator.copyResource(); 
+                }else{
+                    r5=r4 ? creator.copyResource() : false;
+                }
+            }
+    }
+}
+runStep(currentStep);
