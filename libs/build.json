@@ -1,0 +1,18 @@
+{
+                "android": {
+                    "debug": {
+                        "keystore": "automatic-gen.jks",
+                        "storePassword": "bd813743%@d",
+                        "alias": "demo",
+                        "password" : "ac939508!@#",
+                        "keystoreType": "jks"
+                    },
+                    "release": {
+                        "keystore": "automatic-gen.jks",
+                        "storePassword": "bd813743%@d",
+                        "alias": "demo",
+                        "password" : "ac939508!@#",
+                        "keystoreType": "jks"
+                    }
+                }
+            }

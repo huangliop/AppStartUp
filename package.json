@@ -1,0 +1,23 @@
+{
+  "name": "appstartup",
+  "version": "1.0.10",
+  "description": "",
+  "bin": {
+    "appstart": "./app.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/huangliop/AppStartUp.git"
+  },
+  "engines": {
+    "node": "6.*"
+  },
+  "author": "Huang Li",
+  "license": "ISC",
+  "dependencies": {
+    "grunt": "^1.0.1"
+  }
+}
